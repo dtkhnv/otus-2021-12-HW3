@@ -17,6 +17,10 @@ public class Main {
                 {"",                      "5: Не более 5;",                  "5: a[0 0] = 1;"}
         };
 
+        String[] correctArrAnswer = { "3", "3", "3" };
+        
+        Scanner sc = new Scanner(System.in);
+        
         for (int i = 0; i < taskAnswers[0].length; i++) {
             for (String[] taskAnswerKey : taskAnswers) {
                 for (int k = i; k < i + 1; k++) {
@@ -26,7 +30,7 @@ public class Main {
                 System.out.println();
             }
 
-            if (Objects.equals(getInsAnswer(), "3")) {
+            if (Objects.equals(getInsAnswer(sc), correctArrAnswer[i])) {
                 correctAnswers+= 1;
             } else {
                 wrongAnswers+= 1;
@@ -35,12 +39,11 @@ public class Main {
         System.out.println("Правильно - " + correctAnswers + ". Неправильно - " + wrongAnswers);
     }
 
-    private static String getInsAnswer() {
-        Scanner sc = new Scanner(System.in);
+    private static String getInsAnswer(Scanner sc) {
         System.out.print("Введите ответ: ");
         while (!sc.hasNextInt()) {
             System.out.println("Введено не число! \nПовторите попытку");
-            sc.next();
+            sc.nextLine();
         }
         return insAnswer = sc.nextLine();
     }
